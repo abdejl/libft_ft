@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 21:06:57 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/09 12:23:14 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/27 17:34:29 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/11 10:20:54 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *a, int b, size_t n)
+int	ft_atoi(const char *str)
 {
-	size_t	i;
-	char	*str;
+	int	result;
+	int	i;
+	int	sign;
 
 	i = 0;
-	str = a;
-	while (i < n)
+	result = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-')
 	{
-		str[i] = b;
+		sign = -1;
 		i++;
 	}
-	return (a);
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - 48);
+		i++;
+	}
+	return (result * sign);
 }
 /*int main()
 {
-	char str[] = "hello";
-    int b = 'x';
-    size_t n = 5;
-
-    ft_memset(str, b, n);
-    printf("%s\n", str); 
+    char str[] = "--12345678";
+    printf("%d\n", ft_atoi(str));
 }*/

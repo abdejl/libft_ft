@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abjellal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 21:06:42 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/12 12:36:06 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/28 15:03:37 by abjellal          #+#    #+#             */
+/*   Updated: 2024/10/28 15:55:37 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,29 @@ int	ft_strlen(const char *str)
 	}
 	return (i);
 }
+
+char	*ft_strrchr(const char *s, int ch)
+{
+	int	i;
+
+	i = ft_strlen(s) - 1;
+	if (ch == '\0')
+	{
+		return ((char *)(s + i + 1));
+	}
+	while (i >= 0)
+	{
+		if (s[i] == ch)
+		{
+			return ((char *)(s + i));
+		}
+		i--;
+	}
+	return (NULL);
+}
 /*int main()
 {
-	char str[] = "hello world";
-	printf("%d", ft_strlen(str));
+    char str[] = "heella";
+    char ch = '0';
+    printf("%s", ft_strrchr(str, ch));
 }*/

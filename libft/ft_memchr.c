@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 21:06:57 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/09 12:23:14 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/28 21:19:07 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/10 09:53:40 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *a, int b, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
-	char	*str;
+	unsigned char		cc;
+	const unsigned char	*ss;
+	size_t				i;
 
+	cc = (unsigned char)c;
+	ss = (const unsigned char *)s;
 	i = 0;
-	str = a;
 	while (i < n)
 	{
-		str[i] = b;
+		if (ss[i] == cc)
+			return ((void *)(ss + i));
 		i++;
 	}
-	return (a);
+	return (NULL);
 }
+
 /*int main()
 {
-	char str[] = "hello";
-    int b = 'x';
+    char s[] = "hello";
+    char c = 'l';
     size_t n = 5;
-
-    ft_memset(str, b, n);
-    printf("%s\n", str); 
+    printf("%s", ft_memchr(s, c, n));
 }*/

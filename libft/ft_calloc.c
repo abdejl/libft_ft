@@ -1,37 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 21:06:57 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/09 12:23:14 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/30 09:32:36 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/11 12:15:09 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *a, int b, size_t n)
+void	*ft_calloc(size_t nitems, size_t size)
 {
+	char	*ptr;
+	size_t	total;
 	size_t	i;
-	char	*str;
 
 	i = 0;
-	str = a;
-	while (i < n)
+	total = nitems * size;
+	if (nitems != 0 && total / nitems != size)
+		return (NULL);
+	ptr = malloc(total);
+	if (ptr == NULL)
+		return (NULL);
+	while (i < total)
 	{
-		str[i] = b;
+		ptr[i] = 0;
 		i++;
 	}
-	return (a);
+	return (ptr);
 }
+
 /*int main()
 {
-	char str[] = "hello";
-    int b = 'x';
-    size_t n = 5;
+    size_t nitems =5 ;
+    size_t size = sizeof(int);
+    char *ptr = ft_calloc(nitems, size);
 
-    ft_memset(str, b, n);
-    printf("%s\n", str); 
+    size_t i = 0;
+    while (i < nitems)
+    {
+        printf("%d\n", ptr[i]);
+        i++;
+    }
+    free(ptr);
 }*/

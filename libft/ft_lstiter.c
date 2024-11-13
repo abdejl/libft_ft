@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 21:06:57 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/09 12:23:14 by abjellal         ###   ########.fr       */
+/*   Created: 2024/11/10 10:19:57 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/10 11:42:44 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *a, int b, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-	char	*str;
-
-	i = 0;
-	str = a;
-	while (i < n)
+	while (lst != NULL)
 	{
-		str[i] = b;
-		i++;
+		(f)(lst->content);
+		lst = lst->next;
 	}
-	return (a);
 }
-/*int main()
-{
-	char str[] = "hello";
-    int b = 'x';
-    size_t n = 5;
 
-    ft_memset(str, b, n);
-    printf("%s\n", str); 
+/*void ft_print(void *content)
+{
+    printf("%s\n", (char *)content);
+}
+int main()
+{
+    char *str = "hello";
+    t_list *head;
+    head = ft_lstnew(str);
+    ft_lstiter(head, ft_print);
 }*/

@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 21:06:57 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/09 12:23:14 by abjellal         ###   ########.fr       */
+/*   Created: 2024/11/09 21:51:14 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/10 10:18:02 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *a, int b, size_t n)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t	i;
-	char	*str;
+	t_list	*tmp;
+	t_list	*next;
 
-	i = 0;
-	str = a;
-	while (i < n)
+	if (lst == NULL)
+		return ;
+	tmp = *lst;
+	while (tmp != NULL)
 	{
-		str[i] = b;
-		i++;
+		next = tmp->next;
+		if (del != NULL)
+			del(tmp->content);
+		free(tmp);
+		tmp = next;
 	}
-	return (a);
+	*lst = NULL;
 }
-/*int main()
-{
-	char str[] = "hello";
-    int b = 'x';
-    size_t n = 5;
-
-    ft_memset(str, b, n);
-    printf("%s\n", str); 
-}*/

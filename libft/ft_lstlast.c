@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 21:06:57 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/09 12:23:14 by abjellal         ###   ########.fr       */
+/*   Created: 2024/11/08 20:30:06 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/09 12:28:01 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *a, int b, size_t n)
+t_list	*ft_lstlast(t_list *lst)
 {
-	size_t	i;
-	char	*str;
+	int	i;
 
-	i = 0;
-	str = a;
-	while (i < n)
+	if (lst == NULL)
 	{
-		str[i] = b;
-		i++;
+		return (NULL);
 	}
-	return (a);
+	i = 0;
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
 }
 /*int main()
 {
-	char str[] = "hello";
-    int b = 'x';
-    size_t n = 5;
-
-    ft_memset(str, b, n);
-    printf("%s\n", str); 
+    t_list *head;
+    char *a = "jellal";
+    head = ft_lstnew(a);
+    char *c = "abde";
+    t_list *new1 = ft_lstnew(c);
+    t_list *last;
+    last = ft_lstlast(head);
+    printf("%s\n", (char *)(head->content));
+    printf("%s\n", (char *)(last->content));
+    free(head);
+    free(new1);
 }*/

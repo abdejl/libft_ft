@@ -1,37 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 21:06:57 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/09 12:23:14 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/27 16:08:52 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/10 10:00:33 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *a, int b, size_t n)
+int	ft_strlen(const char *str)
 {
-	size_t	i;
-	char	*str;
+	int	i;
 
 	i = 0;
-	str = a;
-	while (i < n)
+	while (str[i])
 	{
-		str[i] = b;
 		i++;
 	}
-	return (a);
+	return (i);
+}
+
+int	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	int		src_len;
+	size_t	i;
+
+	i = 0;
+	src_len = ft_strlen(src);
+	if (size == 0)
+	{
+		return (src_len);
+	}
+	while (src[i] != '\0' && i < size - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (src_len);
 }
 /*int main()
 {
-	char str[] = "hello";
-    int b = 'x';
-    size_t n = 5;
-
-    ft_memset(str, b, n);
-    printf("%s\n", str); 
+	char src[] = "hello";
+	char dest[] = "";
+	size_t n = 3;
+	printf("%d\n", ft_strlcpy(dest, src, n));
+	printf("%s", dest);
 }*/

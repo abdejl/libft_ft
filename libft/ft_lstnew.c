@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 21:06:57 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/09 12:23:14 by abjellal         ###   ########.fr       */
+/*   Created: 2024/11/06 18:55:36 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/13 09:33:09 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *a, int b, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	i;
-	char	*str;
+	t_list	*node;
 
-	i = 0;
-	str = a;
-	while (i < n)
+	node = (t_list *)malloc(sizeof(t_list));
+	if (node == NULL)
 	{
-		str[i] = b;
-		i++;
+		return (NULL);
 	}
-	return (a);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }
 /*int main()
 {
-	char str[] = "hello";
-    int b = 'x';
-    size_t n = 5;
+    char *content = "hello";
+    t_list *node = ft_lstnew(content);
 
-    ft_memset(str, b, n);
-    printf("%s\n", str); 
+    printf("%s\n", (char *)(node->content));
+    free(node);
 }*/
