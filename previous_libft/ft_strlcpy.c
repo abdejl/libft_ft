@@ -1,40 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:57:28 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:01 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/27 16:08:52 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/10 10:00:33 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int ch)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
 	i = 0;
-	if (ch == '\0')
+	while (str[i])
 	{
-		return ((char *)(s + i));
-	}
-	while (s[i])
-	{
-		if ((unsigned char)s[i] == (unsigned char)ch)
-		{
-			return ((char *)(s + i));
-		}
 		i++;
 	}
-	return (NULL);
+	return (i);
 }
 
+int	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	int		src_len;
+	size_t	i;
+
+	i = 0;
+	src_len = ft_strlen(src);
+	if (size == 0)
+	{
+		return (src_len);
+	}
+	while (src[i] != '\0' && i < size - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (src_len);
+}
 /*int main()
 {
-    char str[] = "lalo";
-    char ch = 'a';
-    printf("%s\n", ft_strchr(str, ch));
+	char src[] = "hello";
+	char dest[] = "";
+	size_t n = 3;
+	printf("%d\n", ft_strlcpy(dest, src, n));
+	printf("%s", dest);
 }*/

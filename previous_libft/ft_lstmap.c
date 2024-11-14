@@ -6,7 +6,7 @@
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 12:10:29 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:52:09 by abjellal         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:13:54 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,24 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new;
-	t_list	*node;
+	t_list	*new_lst;
+	t_list	*new_node;
+	void	*new_content;
 
-	if (!f || !lst)
-		return (NULL);
-	new = NULL;
+	new_lst = NULL;
 	while (lst)
 	{
-		node = ft_lstnew(f(lst->content));
-		if (!node)
+		new_content = f(lst->content);
+		new_node = ft_lstnew(new_content);
+		if (!new_node)
 		{
-			ft_lstclear(&node, (*del));
+			ft_lstclear(&new_lst, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&new, node);
+		ft_lstadd_back(&new_lst, new_node);
 		lst = lst->next;
 	}
-	return (new);
+	return (new_lst);
 }
 
 /*void del_content(void *content)

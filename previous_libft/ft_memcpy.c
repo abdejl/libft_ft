@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:57:28 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:01 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/24 21:07:43 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/13 10:46:04 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int ch)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int	i;
+	unsigned char	*source;
+	unsigned char	*desti;
+	size_t			i;
 
+	source = (unsigned char *)src;
+	desti = (unsigned char *)dest;
 	i = 0;
-	if (ch == '\0')
+	while (i < n)
 	{
-		return ((char *)(s + i));
-	}
-	while (s[i])
-	{
-		if ((unsigned char)s[i] == (unsigned char)ch)
-		{
-			return ((char *)(s + i));
-		}
+		desti[i] = source[i];
 		i++;
 	}
-	return (NULL);
+	return (dest);
 }
-
 /*int main()
 {
-    char str[] = "lalo";
-    char ch = 'a';
-    printf("%s\n", ft_strchr(str, ch));
+	char src[] = "hello world";
+	char dest[10] = "ali";
+	size_t n = 12;
+	ft_memcpy(dest + 3, src, n);
+	printf("%s\n", dest);
 }*/

@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:57:28 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:01 by abjellal         ###   ########.fr       */
+/*   Created: 2024/11/09 18:11:38 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/09 19:19:43 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int ch)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	int	i;
-
-	i = 0;
-	if (ch == '\0')
-	{
-		return ((char *)(s + i));
-	}
-	while (s[i])
-	{
-		if ((unsigned char)s[i] == (unsigned char)ch)
-		{
-			return ((char *)(s + i));
-		}
-		i++;
-	}
-	return (NULL);
+	if (lst == NULL)
+		return ;
+	if (del != NULL)
+		del(lst->content);
+	free(lst);
 }
 
 /*int main()
 {
-    char str[] = "lalo";
-    char ch = 'a';
-    printf("%s\n", ft_strchr(str, ch));
+    char *str = "hello";
+    str = malloc(sizeof(t_list));
+    t_list *head = ft_lstnew(str);
+    ft_lstdelone(head, free);
+    head = NULL;
+    if (head == NULL)
+    {
+        printf("node has been deleted\n");
+    }
 }*/

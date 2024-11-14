@@ -1,40 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:57:28 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:01 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/30 13:30:10 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/12 12:32:38 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int ch)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
 	i = 0;
-	if (ch == '\0')
-	{
-		return ((char *)(s + i));
-	}
-	while (s[i])
-	{
-		if ((unsigned char)s[i] == (unsigned char)ch)
-		{
-			return ((char *)(s + i));
-		}
+	while (str[i])
 		i++;
-	}
-	return (NULL);
+	return (i);
 }
 
+char	*ft_strdup(const char *s)
+{
+	char	*ptr;
+	int		i;
+	int		size;
+
+	if (s == NULL)
+		return (NULL);
+	size = ft_strlen(s);
+	ptr = (char *)malloc((size + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		ptr[i] = s[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
 /*int main()
 {
-    char str[] = "lalo";
-    char ch = 'a';
-    printf("%s\n", ft_strchr(str, ch));
+	char str[] = "Hello";
+	char *ptr = ft_strdup(str);
+	printf("%s", ptr);
 }*/

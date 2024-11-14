@@ -6,13 +6,13 @@
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:34:34 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 10:56:50 by abjellal         ###   ########.fr       */
+/*   Updated: 2024/11/11 09:56:12 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_numlen(long n)
+int	ft_numlen(long n)
 {
 	int	len;
 
@@ -32,7 +32,7 @@ static int	ft_numlen(long n)
 	return (len);
 }
 
-static void	ft_converter(char *str, int len, long num)
+void	ft_converter(char *str, int len, long num)
 {
 	while (num > 0)
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 13:30:10 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:46:48 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/28 09:48:04 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/11 20:33:51 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,44 @@
 
 int	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
+	{
 		i++;
+	}
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+int	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char	*ptr;
-	int		i;
-	int		size;
+	size_t	i;
+	size_t	j;
+	size_t	src_len;
+	size_t	dest_len;
 
-	if (s == NULL)
-		return (NULL);
-	size = ft_strlen(s);
-	ptr = (char *)malloc((size + 1) * sizeof(char));
-	if (ptr == NULL)
-		return (NULL);
+	src_len = ft_strlen(src);
+	dest_len = ft_strlen(dst);
+	j = dest_len;
 	i = 0;
-	while (s[i] != '\0')
+	if (size <= dest_len)
 	{
-		ptr[i] = s[i];
+		return (size + src_len);
+	}
+	while (src[i] != '\0' && j + i < size - 1)
+	{
+		dst[j + i] = src[i];
 		i++;
 	}
-	ptr[i] = '\0';
-	return (ptr);
+	dst[i + j] = '\0';
+	return (src_len + dest_len);
 }
 /*int main()
 {
-	char str[] = "Hello";
-	char *ptr = ft_strdup(str);
-	printf("%s", ptr);
+	char src[] = "hello";
+	char dest[] = "hi";
+	size_t n = 8;
+	printf("%d\n", ft_strlcat(dest, src, n));
+	printf("%s", dest);
 }*/

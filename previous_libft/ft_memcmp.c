@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:57:28 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:01 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/28 21:20:56 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/13 10:19:32 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int ch)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	size_t				i;
+	const unsigned char	*ss1;
+	const unsigned char	*ss2;
 
+	ss1 = (const unsigned char *)s1;
+	ss2 = (const unsigned char *)s2;
 	i = 0;
-	if (ch == '\0')
-	{
-		return ((char *)(s + i));
-	}
-	while (s[i])
-	{
-		if ((unsigned char)s[i] == (unsigned char)ch)
-		{
-			return ((char *)(s + i));
-		}
+	while (i < n && ss1[i] == ss2[i])
 		i++;
-	}
-	return (NULL);
+	if (i == n)
+		return (0);
+	return (ss1[i] - ss2[i]);
 }
 
 /*int main()
 {
-    char str[] = "lalo";
-    char ch = 'a';
-    printf("%s\n", ft_strchr(str, ch));
+    char s1[] = "zb";
+    char s2[] = "ac";
+    size_t n = 2;
+    printf("%d\n", ft_memcmp(s1, s2, n));
 }*/

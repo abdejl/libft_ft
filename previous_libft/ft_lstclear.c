@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:57:28 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:01 by abjellal         ###   ########.fr       */
+/*   Created: 2024/11/09 21:51:14 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/10 10:18:02 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int ch)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int	i;
+	t_list	*tmp;
+	t_list	*next;
 
-	i = 0;
-	if (ch == '\0')
+	if (lst == NULL)
+		return ;
+	tmp = *lst;
+	while (tmp != NULL)
 	{
-		return ((char *)(s + i));
+		next = tmp->next;
+		if (del != NULL)
+			del(tmp->content);
+		free(tmp);
+		tmp = next;
 	}
-	while (s[i])
-	{
-		if ((unsigned char)s[i] == (unsigned char)ch)
-		{
-			return ((char *)(s + i));
-		}
-		i++;
-	}
-	return (NULL);
+	*lst = NULL;
 }
-
-/*int main()
-{
-    char str[] = "lalo";
-    char ch = 'a';
-    printf("%s\n", ft_strchr(str, ch));
-}*/

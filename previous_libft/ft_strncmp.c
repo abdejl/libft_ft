@@ -3,31 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abjellal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:01:50 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:06:25 by abjellal         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:33:50 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-#include <stddef.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (s1[i] < s2[i])
+		{
+			return (-1);
+		}
+		else if (s1[i] > s2[i])
+		{
+			return (1);
+		}
 		i++;
 	}
 	return (0);
 }
-
 /*int main()
 {
     char s1[] = "abc";

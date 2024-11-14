@@ -6,11 +6,14 @@
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:06:33 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/12 12:41:51 by abjellal         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:44:20 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+#include "libft.h"
+#include <stdlib.h>
 
 int	ft_strlen(const char *str)
 {
@@ -30,10 +33,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	size_t	s_len;
 
-	i = 0;
-	s_len = ft_strlen(s);
 	if (s == NULL)
 		return (NULL);
+	s_len = ft_strlen(s);
 	if (start >= s_len)
 		return ((char *)malloc(1));
 	if (len > s_len - start)
@@ -41,6 +43,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ptr = (char *)malloc(len + 1);
 	if (ptr == NULL)
 		return (NULL);
+	i = 0;
 	while (i < len && s[start + i] != '\0')
 	{
 		ptr[i] = s[start + i];
@@ -49,6 +52,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
 /*int main()
 {
 	char str[] = "hi how are you";

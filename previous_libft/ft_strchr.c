@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abjellal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:57:28 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:01 by abjellal         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:42:38 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strchr(const char *s, int ch)
 	}
 	while (s[i])
 	{
-		if ((unsigned char)s[i] == (unsigned char)ch)
+		if (s[i] == ch)
 		{
 			return ((char *)(s + i));
 		}
@@ -31,7 +31,6 @@ char	*ft_strchr(const char *s, int ch)
 	}
 	return (NULL);
 }
-
 /*int main()
 {
     char str[] = "lalo";

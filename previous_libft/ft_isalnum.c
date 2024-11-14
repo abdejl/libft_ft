@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:57:28 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:01 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/24 21:05:22 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/12 12:08:50 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int ch)
+int	ft_isalnum(int num)
 {
-	int	i;
-
-	i = 0;
-	if (ch == '\0')
-	{
-		return ((char *)(s + i));
-	}
-	while (s[i])
-	{
-		if ((unsigned char)s[i] == (unsigned char)ch)
-		{
-			return ((char *)(s + i));
-		}
-		i++;
-	}
-	return (NULL);
+	if ((num >= 48 && num <= 57) || (num >= 65 && num <= 90))
+		return (1);
+	else if (num >= 97 && num <= 122)
+		return (1);
+	return (0);
 }
-
 /*int main()
 {
-    char str[] = "lalo";
-    char ch = 'a';
-    printf("%s\n", ft_strchr(str, ch));
+	int num = '1';
+	printf("%d", ft_isalnum(num));
 }*/

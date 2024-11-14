@@ -1,51 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 13:30:10 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:46:48 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/30 09:32:36 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/11 12:15:09 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(const char *s)
+void	*ft_calloc(size_t nitems, size_t size)
 {
 	char	*ptr;
-	int		i;
-	int		size;
+	size_t	total;
+	size_t	i;
 
-	if (s == NULL)
+	i = 0;
+	total = nitems * size;
+	if (nitems != 0 && total / nitems != size)
 		return (NULL);
-	size = ft_strlen(s);
-	ptr = (char *)malloc((size + 1) * sizeof(char));
+	ptr = malloc(total);
 	if (ptr == NULL)
 		return (NULL);
-	i = 0;
-	while (s[i] != '\0')
+	while (i < total)
 	{
-		ptr[i] = s[i];
+		ptr[i] = 0;
 		i++;
 	}
-	ptr[i] = '\0';
 	return (ptr);
 }
+
 /*int main()
 {
-	char str[] = "Hello";
-	char *ptr = ft_strdup(str);
-	printf("%s", ptr);
+    size_t nitems =5 ;
+    size_t size = sizeof(int);
+    char *ptr = ft_calloc(nitems, size);
+
+    size_t i = 0;
+    while (i < nitems)
+    {
+        printf("%d\n", ptr[i]);
+        i++;
+    }
+    free(ptr);
 }*/

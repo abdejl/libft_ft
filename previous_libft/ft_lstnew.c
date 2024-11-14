@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:57:28 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:44:01 by abjellal         ###   ########.fr       */
+/*   Created: 2024/11/06 18:55:36 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/13 09:33:09 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int ch)
+t_list	*ft_lstnew(void *content)
 {
-	int	i;
+	t_list	*node;
 
-	i = 0;
-	if (ch == '\0')
+	node = (t_list *)malloc(sizeof(t_list));
+	if (node == NULL)
 	{
-		return ((char *)(s + i));
+		return (NULL);
 	}
-	while (s[i])
-	{
-		if ((unsigned char)s[i] == (unsigned char)ch)
-		{
-			return ((char *)(s + i));
-		}
-		i++;
-	}
-	return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }
-
 /*int main()
 {
-    char str[] = "lalo";
-    char ch = 'a';
-    printf("%s\n", ft_strchr(str, ch));
+    char *content = "hello";
+    t_list *node = ft_lstnew(content);
+
+    printf("%s\n", (char *)(node->content));
+    free(node);
 }*/

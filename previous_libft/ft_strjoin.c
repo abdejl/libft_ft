@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 13:30:10 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:46:48 by abjellal         ###   ########.fr       */
+/*   Created: 2024/10/31 13:34:43 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/10 20:29:04 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,44 @@ int	ft_strlen(const char *str)
 
 	i = 0;
 	while (str[i])
+	{
 		i++;
+	}
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*ptr;
 	int		i;
-	int		size;
+	int		k;
+	char	*ptr;
 
-	if (s == NULL)
+	if (s1 == NULL || s2 == NULL)
+	{
 		return (NULL);
-	size = ft_strlen(s);
-	ptr = (char *)malloc((size + 1) * sizeof(char));
+	}
+	i = 0;
+	ptr = malloc(ft_strlen(s1) + ft_strlen(s2) * sizeof(char) + 1);
 	if (ptr == NULL)
 		return (NULL);
-	i = 0;
-	while (s[i] != '\0')
+	while (i < ft_strlen(s1))
 	{
-		ptr[i] = s[i];
+		ptr[i] = s1[i];
 		i++;
 	}
-	ptr[i] = '\0';
+	k = 0;
+	while (k < ft_strlen(s2))
+	{
+		ptr[i + k] = s2[k];
+		k++;
+	}
+	ptr[i + k] = '\0';
 	return (ptr);
 }
 /*int main()
 {
-	char str[] = "Hello";
-	char *ptr = ft_strdup(str);
-	printf("%s", ptr);
+    char s1[] = "hi 9 ";
+    char s2[] = "how are you";
+    char *ptr = ft_strjoin(s1, s2);
+    printf("%s\n", ptr);
 }*/

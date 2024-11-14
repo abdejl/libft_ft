@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abjellal <abjellal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 13:30:10 by abjellal          #+#    #+#             */
-/*   Updated: 2024/11/14 11:46:48 by abjellal         ###   ########.fr       */
+/*   Created: 2024/11/04 17:41:45 by abjellal          #+#    #+#             */
+/*   Updated: 2024/11/09 22:19:39 by abjellal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,41 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*ptr;
-	int		i;
-	int		size;
+	unsigned int	index;
+	unsigned int	len;
+	char			*ptr;
 
 	if (s == NULL)
 		return (NULL);
-	size = ft_strlen(s);
-	ptr = (char *)malloc((size + 1) * sizeof(char));
+	len = ft_strlen(s);
+	ptr = (char *)malloc((len + 1) * sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
-	i = 0;
-	while (s[i] != '\0')
+	index = 0;
+	while (index < len)
 	{
-		ptr[i] = s[i];
-		i++;
+		ptr[index] = (*f)(index, s[index]);
+		index++;
 	}
-	ptr[i] = '\0';
+	ptr[index] = '\0';
 	return (ptr);
 }
-/*int main()
+
+/*char capitalize(unsigned int i, char c)
 {
-	char str[] = "Hello";
-	char *ptr = ft_strdup(str);
-	printf("%s", ptr);
+    if (i % 2 == 0 && c >= 'a' && c <= 'z')
+    {
+        return (c - 32);
+    }
+    return (c);
+}
+
+int main()
+{
+    
+    char str[] = "hello world";
+    char *res = ft_strmapi(str, capitalize);
+    printf("%s", res);
 }*/
